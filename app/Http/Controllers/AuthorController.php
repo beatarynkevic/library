@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        $authors = Author::all();
+       return view('author.index', ['authors' => $authors]);
     }
 
     /**
@@ -36,6 +43,7 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
         $author = new Author;
+        //db                        is formos
         $author->name = $request->author_name;
         $author->surname = $request->author_surname;
         $author->save();
@@ -62,7 +70,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        return view('author.edit', ['author' => $author]);
     }
 
     /**
@@ -74,7 +82,10 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $author->name = $request->author_name;
+        $author->surname = $request->author_surname;
+        $author->save();
+        return redirect()->route('author.index');
     }
 
     /**
@@ -85,6 +96,12 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        if($author->authorBooksList->count() !== 0) {
+            return 'Negalima. Yra parasytu veikalu';
+
+        }
+
+        $author->delete();
+        return redirect()->route('author.index');
     }
 }
