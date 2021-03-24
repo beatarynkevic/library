@@ -16,12 +16,12 @@ class CreateBooksTable extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title');
-            $table->string('isbn');
-            $table->unsignedTinyInteger('pages');
+            $table->string('title', 255);
+            $table->string('isbn', 20);
+            $table->integer('pages');
             $table->text('about');
             $table->unsignedBigInteger('author_id');
-            $table->foreign('author_id')->references('id')->on('authors');
+            $table->foreign('author_id')->references('id')->on('authors'); //rysis tarp autoriaus ir autoriaus id
 
             $table->timestamps();
         });
