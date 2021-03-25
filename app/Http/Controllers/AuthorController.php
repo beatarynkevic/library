@@ -96,7 +96,7 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        if($author->authorBooksList->count() !== 0) {
+        if($author->authorBooksList->count() !== 0) { //kolekcija su knygom
             return 'Negalima. Yra parasytu veikalu';
         }
 
