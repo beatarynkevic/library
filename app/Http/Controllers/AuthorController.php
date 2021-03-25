@@ -43,7 +43,7 @@ class AuthorController extends Controller
     public function store(Request $request)
     {
         Author::create($request);
-        return redirect()->route('author.index');
+        return redirect()->route('author.index')->with('success_message', 'The Author has been created. Nice job!');
     }
 
     /**
@@ -96,6 +96,6 @@ class AuthorController extends Controller
         }
 
         $author->delete();
-        return redirect()->route('author.index');
+        return redirect()->route('author.index')->with('info_message', 'The author has been killed');
     }
 }
