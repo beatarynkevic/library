@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,15 @@ Route::group(['prefix' => 'authors'], function(){
     Route::post('delete/{author}', [AuthorController::class, 'destroy'])->name('author.destroy');
     Route::get('show/{author}', [AuthorController::class, 'show'])->name('author.show');
  });
+
+Route::group(['prefix' => 'books'], function(){
+   Route::get('', [BookController::class, 'index'])->name('book.index');
+   Route::get('create', [BookController::class, 'create'])->name('book.create');
+   Route::post('store', [BookController::class, 'store'])->name('book.store');
+   Route::get('edit/{book}', [BookController::class, 'edit'])->name('book.edit');
+   Route::post('update/{book}', [BookController::class, 'update'])->name('book.update');
+   Route::post('delete/{book}', [BookController::class, 'destroy'])->name('book.destroy');
+   Route::get('show/{book}', [BookController::class, 'show'])->name('book.show');
+});
+
  

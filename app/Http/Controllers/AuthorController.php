@@ -98,7 +98,6 @@ class AuthorController extends Controller
     {
         if($author->authorBooksList->count() !== 0) {
             return 'Negalima. Yra parasytu veikalu';
-
         }
 
         $author->delete();
