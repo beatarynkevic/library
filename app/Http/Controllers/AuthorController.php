@@ -92,7 +92,7 @@ class AuthorController extends Controller
     public function destroy(Author $author)
     {
         if($author->authorBooksList->count() !== 0) { //kolekcija su knygom
-            return 'Negalima. Yra parasytu veikalu';
+            return redirect()->back()->with('info_message', 'The author is immortal. You cant delete him');
         }
 
         $author->delete();
