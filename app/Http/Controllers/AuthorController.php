@@ -42,13 +42,8 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        $author = new Author;
-        //db                        is formos
-        $author->name = $request->author_name;
-        $author->surname = $request->author_surname;
-        $author->save();
+        Author::create($request);
         return redirect()->route('author.index');
-
     }
 
     /**
