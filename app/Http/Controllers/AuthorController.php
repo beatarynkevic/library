@@ -21,8 +21,9 @@ class AuthorController extends Controller
      */
     public function index(Request $request)
     {
-        $authors = $request->sort ? Author::orderBy('surname')->get() : Author:: all();
-       // $authors = Author::all();
+        // $authors = Author::all(); be tvarkos
+        // $authors = $request->sort ? Author::orderBy('surname')->get() : Author::all();
+
        if ('name' == $request->sort) {
            $authors = Author::orderBy('name')->get();
         } elseif ('surname' == $request->sort) {
@@ -31,11 +32,10 @@ class AuthorController extends Controller
             $authors = Author::all();
         }
 
-       $authors = Author::orderBy('surname', 'desc')->get(); //rusiavimo metodas
+        //$authors = Author::orderBy('surname')->get(); rusiavimo metodas pagal pavarde
         //desc rusiuoja atvirksciai
-// dd($authors);
-
-
+        // dd($authors);
+        
        return view('author.index', ['authors' => $authors]);
     }
 

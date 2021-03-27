@@ -5,8 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Author list</div>
-
+                <div class="card-header">
+                    <h2>Author</h2>
+                    <a href="{{route('author.index', ['sort' => 'surname'])}}">Sort by surname</a>
+                    <a href="{{route('author.index', ['sort' => 'name'])}}">Sort by name</a>
+                    <a href="{{route('author.index')}}">Default</a>
+                </div>
                 <div class="card-body">
                     <ul class="list-group">
                         @foreach ($authors as $author)

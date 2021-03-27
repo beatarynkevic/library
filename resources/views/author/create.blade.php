@@ -7,9 +7,6 @@
             <div class="card">
                 <div class="card-header">
                     Create new author
-                    <a href="{{route('author.index', ['sort' => 'surname'])}}">Sort by name</a>
-                    <a href="{{route('author.index')}}">Default</a>
-
                 </div>
 
                 <div class="card-body">
