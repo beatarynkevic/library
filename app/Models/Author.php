@@ -12,7 +12,7 @@ class Author extends Model
     
     public static function create(Request $request) 
     {
-        $author = new Author;
+        $author = new self;
         $author->name = $request->author_name;
         $author->surname = $request->author_surname;
         $author->save();
@@ -22,4 +22,24 @@ class Author extends Model
     {
         return $this->hasMany('App\Models\Book', 'author_id', 'id');
     }
+
+    public function edit(Request $request)
+    {
+        $this->name = $request->author_name;
+        $this->surname = $request->author_surname;
+        $this->save();
+    }
+
+    // public static function new() 
+    // {
+    //     return new self;
+    // }
+
+    // public function refreshAndSave(Request $request)
+    // {
+    //     $this->name = $request->author_name;
+    //     $this->surname = $request->author_surname;
+    //     $this->save();
+    //     return $this;
+    // }
 }
