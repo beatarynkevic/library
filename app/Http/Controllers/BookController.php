@@ -21,21 +21,30 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $authors = Author::all();
-        
-//FILTRAVIMAS
+        //FILTRAVIMAS
         if($request->author_id) {
-            $books = Books::where('author_id', $request->author_id)->get();
+            $books = Book::where('author_id', $request->author_id)->get();
             $filterBy = $request->author_id;
         }
         else {
             $books = Book::all();
         }
 
-        $books = Book::all();
+        //RUSIAVIMAS(KOLEKCIJA)
+        if($request->sort && 'asc' == $request->sort){
+            $books= $books->sortBy('title');
+            $sortBy = 'asc';
+        }
+        elseif ($request->sort && 'desc' == $request->sort) {
+            $books = $books->sortByDesc('title');
+            $sortBy = 'desc';
+        }
+
         return view('book.index', [
             'books' => $books,
             'authors' => $authors,
-            'filterBy' => $filterBy ?? 0
+            'filterBy' => $filterBy ?? 0,
+            'sortBy' => $sortBy ?? 0
             ]);
     }
 

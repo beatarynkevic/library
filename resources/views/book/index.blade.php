@@ -6,6 +6,7 @@
             <div class="card">
                 <div class="card-header">
                     <h2>Books List</h2>
+
                     <div class="make-inline">
                         <form action="{{route('book.index')}}" method="get" class="make-inline">
                             <div class="form-group make-inline">
@@ -19,9 +20,18 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-info">Filter</button>
-                        </form>
+                            <label>Sort by title:</label>
+                            <div class="form-group form-check make-inline">
+                                <input type="radio" name="sort" value="asc" class="form-check-input" id="sortASC" @if($sortBy=='asc' ) checked @endif>
+                                <label class="form-check-label" for="sortASC">ASC</label>
+                                <div class="form-group form-check make-inline">
+                                    <input type="radio" name="sort" value="desc" class="form-check-input" id="sortDESC" @if($sortBy=='desc' ) checked @endif>
+                                </div>
+                                <label class="form-check-label" for="sortDESC">DESC</label>
+                            </div>
 
+                            <button type="submit" class="btn btn-info ">Filter</button>
+                        </form>
                         <a href="{{route('book.index')}}" class="btn btn-info">Clear filter</a>
                     </div>
                 </div>
