@@ -10971,4 +10971,10 @@ a.text-dark:focus {
   font-style: italic;
 }
 
+.make-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 
