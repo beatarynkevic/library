@@ -54,7 +54,7 @@
     </div>
 </div>
 <script>
-    $(document).ready(function() {
+    window.addEventListener('DOMContentLoaded', (event) => {
         $('#summernote').summernote();
     });
 
