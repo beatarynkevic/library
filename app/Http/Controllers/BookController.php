@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Author;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -56,7 +57,8 @@ class BookController extends Controller
     public function create()
     {
         $authors = Author::all();
-        return view('book.create', ['authors' => $authors]);
+        $publishers = Publisher::all();
+        return view('book.create', ['authors' => $authors, 'publishers' => $publishers]);
     }
 
     /**
@@ -73,6 +75,7 @@ class BookController extends Controller
         $book->pages = $request->book_pages;
         $book->about = $request->book_about;
         $book->author_id = $request->author_id;
+        $book->publisher_id = $request->publisher_id;
         $book->save();
         return redirect()->route('book.index')->with('success_message', 'The book was created');
     }
